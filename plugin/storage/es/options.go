@@ -50,6 +50,7 @@ const (
 	suffixTagDeDotChar      = suffixTagsAsFields + ".dot-replacement"
 	suffixReadAlias         = ".use-aliases"
 	suffixEnabled           = ".enabled"
+	suffixInsecureSkipVerify = "tls.insecureskipverify"
 )
 
 // TODO this should be moved next to config.Configuration struct (maybe ./flags package)
@@ -91,6 +92,7 @@ func NewOptions(primaryNamespace string, otherNamespaces ...string) *Options {
 				BulkFlushInterval: time.Millisecond * 200,
 				TagDotReplacement: "@",
 				Enabled:           true,
+				InsecureSkipVerify false,
 			},
 			servers:   "http://127.0.0.1:9200",
 			namespace: primaryNamespace,
@@ -213,6 +215,10 @@ func addFlags(flagSet *flag.FlagSet, nsConfig *namespaceConfig) {
 			nsConfig.namespace+suffixEnabled,
 			nsConfig.Enabled,
 			"Enable extra storage")
+	flagSet.Bool(
+		nsConfig.namepsace+suffixInsecureSkipVerify,
+		nsConifg.InsecureSkipVerify
+		"Skip ssl host verification for your ES URL")
 	}
 }
 
