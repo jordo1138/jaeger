@@ -255,6 +255,7 @@ func initFromViper(cfg *namespaceConfig, v *viper.Viper) {
 	cfg.TagDotReplacement = v.GetString(cfg.namespace + suffixTagDeDotChar)
 	cfg.UseReadWriteAliases = v.GetBool(cfg.namespace + suffixReadAlias)
 	cfg.Enabled = v.GetBool(cfg.namespace + suffixEnabled)
+	cfg.InsecureSkipVerify = v.GetBool(cfg.namespace + suffixInsecureSkipVerify)
 }
 
 // GetPrimary returns primary configuration.
